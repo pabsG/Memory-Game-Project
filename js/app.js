@@ -2,6 +2,8 @@
  * Create a list that holds all of your cards
  */
 
+const allCards = $('.deck li');
+const restartGame = $('.fa-repeat');
 
 /*
  * Display the cards on the page
@@ -9,6 +11,18 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+function shuffleCards () {
+  let shuffledCards = shuffle(allCards);
+  const deck = $('.deck');
+  for (let card of shuffledCards) {
+    deck.append(card);
+  }
+}
+
+function hideAllCards () {
+    allCards.removeClass('open show');
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -25,7 +39,11 @@ function shuffle(array) {
     return array;
 }
 
+restartGame.click(function() {
+  shuffleCards();
+  hideAllCards();
 
+})
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
